@@ -9,7 +9,7 @@ memcheck: all
 	$(MEMCHECK) ./main ./test/test.S ./test/test.out
 
 test: all
-	./main ./trial/trial.S ./trial/trial.out
+	./main ./test/test ./test/test.out
 
 clean:
 	rm -f ./main
