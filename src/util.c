@@ -270,11 +270,7 @@ int32_t str_to_uint(char* x){
 uint32_t str_to_uint_12(char* x){ 
   char* tmp = NULL;
   uint32_t result = 0;
-  if((*x!='-')||(*x!='1')||(*x!='2')||(*x!='3')||(*x!='4')||(*x!='5')||(*x!='6')||(*x!='7')||(*x!='8')||(*x!='9')||(*x!='0')){
-    IMMEDIATE_ERROR = 1;
-    return 0;
-  }
-  else{
+  if((*x=='-')||(*x=='1')||(*x=='2')||(*x=='3')||(*x=='4')||(*x=='5')||(*x=='6')||(*x=='7')||(*x=='8')||(*x=='9')||(*x=='0')){
     if(*x=='-'){
       for(size_t i=1;i<strlen(x);i++){
         tmp=x+i;
@@ -301,6 +297,10 @@ uint32_t str_to_uint_12(char* x){
     }
     return result;
   }
+  else{
+    IMMEDIATE_ERROR = 1;
+    return 0;
+  }
 }
 
 uint32_t extract_reg_13(char* x){
@@ -317,11 +317,7 @@ uint32_t extract_reg_13(char* x){
 uint32_t str_to_uint_13(char* x){ 
   char* tmp = NULL;
   uint32_t result = 0;
-  if((*x!='-')||(*x!='1')||(*x!='2')||(*x!='3')||(*x!='4')||(*x!='5')||(*x!='6')||(*x!='7')||(*x!='8')||(*x!='9')||(*x!='0')){
-    IMMEDIATE_ERROR = 1;
-    return 0;
-  }
-  else{
+  if((*x=='-')||(*x=='1')||(*x=='2')||(*x=='3')||(*x=='4')||(*x=='5')||(*x=='6')||(*x=='7')||(*x=='8')||(*x=='9')||(*x=='0')){
   if(*x=='-'){
     for(size_t i=1;i<strlen(x);i++){
       tmp=x+i;
@@ -348,6 +344,10 @@ uint32_t str_to_uint_13(char* x){
   }
   return result;
   }
+  else{
+    IMMEDIATE_ERROR=1;
+    return 0;
+  }
 }
 
 uint32_t extract_reg_32(char* x){
@@ -364,36 +364,36 @@ uint32_t extract_reg_32(char* x){
 uint32_t str_to_uint_32(char* x){ 
   char* tmp = NULL;
   uint32_t result = 0;
-  if((*x!='-')||(*x!='1')||(*x!='2')||(*x!='3')||(*x!='4')||(*x!='5')||(*x!='6')||(*x!='7')||(*x!='8')||(*x!='9')||(*x!='0')){
+  if((*x=='-')||(*x=='1')||(*x=='2')||(*x=='3')||(*x=='4')||(*x=='5')||(*x=='6')||(*x=='7')||(*x=='8')||(*x=='9')||(*x=='0')){
+    if(*x=='-'){
+      for(size_t i=1;i<strlen(x);i++){
+        tmp=x+i;
+        if(*tmp=='('){
+          break;
+        }
+        else{
+          result=result*10+*tmp-48;       
+        }
+      }
+      result=(1<<31)-result+(1<<31);
+    }
+    else{
+      
+      for(size_t i=0;i<strlen(x);i++){
+        tmp=x+i;
+        if(*tmp=='('){
+          break;
+        }
+        else{
+          result=result*10+*tmp-48;       
+        }
+      }
+    }
+  return result;
+  }
+  else{
     IMMEDIATE_ERROR = 1;
     return 0;
-  }
-  else{
-  if(*x=='-'){
-    for(size_t i=1;i<strlen(x);i++){
-      tmp=x+i;
-      if(*tmp=='('){
-        break;
-      }
-      else{
-        result=result*10+*tmp-48;       
-      }
-    }
-    result=(1<<31)-result+(1<<31);
-  }
-  else{
-    
-    for(size_t i=0;i<strlen(x);i++){
-      tmp=x+i;
-      if(*tmp=='('){
-        break;
-      }
-      else{
-        result=result*10+*tmp-48;       
-      }
-    }
-  }
-  return result;
   }
 }
 
@@ -411,11 +411,7 @@ uint32_t extract_reg_21(char* x){
 uint32_t str_to_uint_21(char* x){ 
   char* tmp = NULL;
   uint32_t result = 0;
-  if((*x!='-')||(*x!='1')||(*x!='2')||(*x!='3')||(*x!='4')||(*x!='5')||(*x!='6')||(*x!='7')||(*x!='8')||(*x!='9')||(*x!='0')){
-    IMMEDIATE_ERROR = 1;
-    return 0;
-  }
-  else{
+  if((*x=='-')||(*x=='1')||(*x=='2')||(*x=='3')||(*x=='4')||(*x=='5')||(*x=='6')||(*x=='7')||(*x=='8')||(*x=='9')||(*x=='0')){
   if(*x=='-'){
     for(size_t i=1;i<strlen(x);i++){
       tmp=x+i;
@@ -441,5 +437,9 @@ uint32_t str_to_uint_21(char* x){
     }
   }
   return result;
+  }
+  else{
+    IMMEDIATE_ERROR = 1;
+    return 0;
   }
 }
