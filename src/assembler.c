@@ -16,6 +16,9 @@ int assembler(FILE *input_file,
     if(ret==NULL){
       break;
     }
+    if(input==NULL){
+      break;
+    }
     int flag=0;
     char temp[10][20];
     char* token=NULL;
@@ -221,7 +224,7 @@ int assembler(FILE *input_file,
     else{
       INSTRUCTION_ERROR = 1;
     }
-    if((REGISTER_ERROR)||(INSTRUCTION_ERROR)){
+    if((REGISTER_ERROR)||(INSTRUCTION_ERROR)||(IMMEDIATE_ERROR)){
       dump_error_information(output_file);
       continue;
     }
