@@ -21,7 +21,7 @@ int assembler(FILE *input_file,
       break;
     }
     int flag=0;
-    char temp[10][20];
+    char temp[10][40];
     char* token=NULL;
     const char s[2] = " ";
     token=strtok(input, s);
