@@ -232,7 +232,7 @@ char* extract_char(char* x){
 
 uint32_t extract_reg_12(char* x){
   int i = 0;
-  char* r = malloc(64);
+  char r[64];
   while(*(x+i)!='('){
     i++;
   }
@@ -309,7 +309,7 @@ uint32_t str_to_uint_12(char* x){
 
 uint32_t extract_reg_13(char* x){
   int i = 0;
-  char* r = malloc(64);
+  char r[64];
   while(*(x+i)!='('){
     i++;
   }
@@ -356,7 +356,7 @@ uint32_t str_to_uint_13(char* x){
 
 uint32_t extract_reg_32(char* x){
   int i = 0;
-  char* r = malloc(64);
+  char r[64];
   while(*(x+i)!='('){
     i++;
   }
@@ -403,7 +403,7 @@ uint32_t str_to_uint_32(char* x){
 
 uint32_t extract_reg_21(char* x){
   int i = 0;
-  char* r = malloc(64);
+  char r[64];
   while(*(x+i)!='('){
     i++;
   }

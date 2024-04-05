@@ -8,6 +8,7 @@ int assembler(FILE *input_file,
   /*GET ONE OF THE INPUT CODE*/
   char input[100];
   memset(input, EOF, 100);
+  char* ptr = NULL;
   while(!feof(input_file)){
     IMMEDIATE_ERROR=0;
     REGISTER_ERROR = 0;
@@ -99,19 +100,29 @@ int assembler(FILE *input_file,
       code=code+0*(1<<25)+change(temp[3])*(1<<20)+change(temp[2])*(1<<15)+7*(1<<12)+change(temp[1])*(1<<7)+51;
     }
     else if(strcmp(temp[0],"lb")==0){
-      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+0*(1<<12)+change(temp[1])*(1<<7)+3; 
+      ptr = extract_char(temp[2]);
+      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(ptr)*(1<<15)+0*(1<<12)+change(temp[1])*(1<<7)+3; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"lh")==0){
-      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+1*(1<<12)+change(temp[1])*(1<<7)+3; 
+      ptr = extract_char(temp[2]);
+      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(ptr)*(1<<15)+1*(1<<12)+change(temp[1])*(1<<7)+3; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"lw")==0){
-      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+2*(1<<12)+change(temp[1])*(1<<7)+3; 
+      ptr = extract_char(temp[2]);
+      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(ptr)*(1<<15)+2*(1<<12)+change(temp[1])*(1<<7)+3; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"lbu")==0){
-      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+4*(1<<12)+change(temp[1])*(1<<7)+3; 
+      ptr = extract_char(temp[2]);
+      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(ptr)*(1<<15)+4*(1<<12)+change(temp[1])*(1<<7)+3; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"lhu")==0){
-      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+5*(1<<12)+change(temp[1])*(1<<7)+3; 
+      ptr = extract_char(temp[2]);
+      code=code+0*(1<<25)+extract_reg_12(temp[2])*(1<<20)+change(ptr)*(1<<15)+5*(1<<12)+change(temp[1])*(1<<7)+3; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"addi")==0){
       code=code+0*(1<<25)+str_to_uint_12(temp[3])*(1<<20)+change(temp[2])*(1<<15)+0*(1<<12)+change(temp[1])*(1<<7)+19; 
@@ -147,13 +158,19 @@ int assembler(FILE *input_file,
       code=code+115; 
     }
     else if(strcmp(temp[0],"sb")==0){
-      code=code+(extract_reg_12(temp[2])/32)*(1<<25)+change(temp[1])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+0*(1<<12)+((extract_reg_12(temp[2]))%(1<<5))*(1<<7)+35; 
+      ptr = extract_char(temp[2]);
+      code=code+(extract_reg_12(temp[2])/32)*(1<<25)+change(temp[1])*(1<<20)+change(ptr)*(1<<15)+0*(1<<12)+((extract_reg_12(temp[2]))%(1<<5))*(1<<7)+35; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"sh")==0){
-      code=code+(extract_reg_12(temp[2])/32)*(1<<25)+change(temp[1])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+1*(1<<12)+((extract_reg_12(temp[2]))%(1<<5))*(1<<7)+35; 
+      ptr = extract_char(temp[2]);
+      code=code+(extract_reg_12(temp[2])/32)*(1<<25)+change(temp[1])*(1<<20)+change(ptr)*(1<<15)+1*(1<<12)+((extract_reg_12(temp[2]))%(1<<5))*(1<<7)+35; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"sw")==0){
-      code=code+(extract_reg_12(temp[2])/32)*(1<<25)+change(temp[1])*(1<<20)+change(extract_char(temp[2]))*(1<<15)+2*(1<<12)+((extract_reg_12(temp[2]))%(1<<5))*(1<<7)+35; 
+      ptr = extract_char(temp[2]);
+      code=code+(extract_reg_12(temp[2])/32)*(1<<25)+change(temp[1])*(1<<20)+change(ptr)*(1<<15)+2*(1<<12)+((extract_reg_12(temp[2]))%(1<<5))*(1<<7)+35; 
+      free(ptr);
     }
     else if(strcmp(temp[0],"beq")==0){
       uint32_t imm = str_to_uint_13(temp[3]);
@@ -232,6 +249,7 @@ int assembler(FILE *input_file,
     if(code2!=0){
       dump_code(output_file, code2);
     }
+
   }
   return 0;
 }
