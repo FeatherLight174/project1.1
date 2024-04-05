@@ -2,6 +2,10 @@
 
 /* YOUR CODE HERE */
 
+int REGISTER_ERROR;
+int INSTRUCTION_ERROR;
+int IMMEDIATE_ERROR;
+
 /* DO NOT MODIFY CODES BELOW*/
 
 /* Store code into file_ under fixed format */

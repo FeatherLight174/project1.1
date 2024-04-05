@@ -8,9 +8,9 @@
 
 #define ASSEMBLER_ERROR -1
 #define ASSEMBLER_CORRECT 0
-int REGISTER_ERROR;
-int INSTRUCTION_ERROR;
-int IMMEDIATE_ERROR;
+extern int REGISTER_ERROR;
+extern int INSTRUCTION_ERROR;
+extern int IMMEDIATE_ERROR;
 void dump_code(FILE *file_, uint32_t code);
 
 void dump_error_information(FILE *file_);
