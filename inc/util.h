@@ -11,6 +11,7 @@
 extern int REGISTER_ERROR;
 extern int INSTRUCTION_ERROR;
 extern int IMMEDIATE_ERROR;
+extern int SCALE_ERROR;
 void dump_code(FILE *file_, uint32_t code);
 
 void dump_error_information(FILE *file_);

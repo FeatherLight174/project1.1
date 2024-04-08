@@ -5,6 +5,7 @@
 int REGISTER_ERROR;
 int INSTRUCTION_ERROR;
 int IMMEDIATE_ERROR;
+int SCALE_ERROR;
 
 /* DO NOT MODIFY CODES BELOW*/
 
@@ -285,10 +286,10 @@ uint32_t str_to_uint_12(char* x){
           result=result*10+*tmp-48;       
         }
       }
+
       result=(1<<12)-result;
     }
     else{
-      
       for(size_t i=0;i<strlen(x);i++){
         tmp=x+i;
         if(*tmp=='('){
@@ -299,7 +300,13 @@ uint32_t str_to_uint_12(char* x){
         }
       }
     }
-    return result;
+    if((result>=0)&&(result<=(1<<12)-1)){
+      return result;
+    }
+    else{
+      SCALE_ERROR = 1;
+      return 0;
+    }
   }
   else{
     IMMEDIATE_ERROR = 1;
@@ -346,7 +353,13 @@ uint32_t str_to_uint_13(char* x){
       }
     }
   }
-  return result;
+  if((result>=0)&&(result<=(1<<13)-1)){
+      return result;
+    }
+    else{
+      SCALE_ERROR = 1;
+      return 0;
+    }
   }
   else{
     IMMEDIATE_ERROR=1;
@@ -370,16 +383,8 @@ uint32_t str_to_uint_32(char* x){
   uint32_t result = 0;
   if((*x=='-')||(*x=='1')||(*x=='2')||(*x=='3')||(*x=='4')||(*x=='5')||(*x=='6')||(*x=='7')||(*x=='8')||(*x=='9')||(*x=='0')){
     if(*x=='-'){
-      for(size_t i=1;i<strlen(x);i++){
-        tmp=x+i;
-        if(*tmp=='('){
-          break;
-        }
-        else{
-          result=result*10+*tmp-48;       
-        }
-      }
-      result=(1<<31)-result+(1<<31);
+      SCALE_ERROR=1;
+      return 0;
     }
     else{
       
@@ -393,7 +398,13 @@ uint32_t str_to_uint_32(char* x){
         }
       }
     }
-  return result;
+  if((result>=0)&&(result<=(1<<20)-1)){
+      return result;
+    }
+    else{
+      SCALE_ERROR = 1;
+      return 0;
+    }
   }
   else{
     IMMEDIATE_ERROR = 1;
@@ -440,7 +451,13 @@ uint32_t str_to_uint_21(char* x){
       }
     }
   }
-  return result;
+  if((result>=0)&&(result<=(1<<21)-1)){
+      return result;
+    }
+    else{
+      SCALE_ERROR = 1;
+      return 0;
+    }
   }
   else{
     IMMEDIATE_ERROR = 1;

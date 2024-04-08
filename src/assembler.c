@@ -13,6 +13,7 @@ int assembler(FILE *input_file,
     IMMEDIATE_ERROR=0;
     REGISTER_ERROR = 0;
     INSTRUCTION_ERROR=0;
+    SCALE_ERROR = 0;
     char* ret = fgets(input,64,input_file);
     if(ret==NULL){
       break;
@@ -242,7 +243,7 @@ int assembler(FILE *input_file,
     else{
       INSTRUCTION_ERROR = 1;
     }
-    if((REGISTER_ERROR)||(INSTRUCTION_ERROR)||(IMMEDIATE_ERROR)){
+    if((REGISTER_ERROR)||(INSTRUCTION_ERROR)||(IMMEDIATE_ERROR)||(SCALE_ERROR)){
       dump_error_information(output_file);
       continue;
     }
