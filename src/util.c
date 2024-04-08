@@ -300,7 +300,7 @@ uint32_t str_to_uint_12(char* x){
         }
       }
     }
-    if((result>=0)&&(result<=(1<<12)-1)){
+    if((result<=(1<<12)-1)){
       return result;
     }
     else{
@@ -353,7 +353,7 @@ uint32_t str_to_uint_13(char* x){
       }
     }
   }
-  if((result>=0)&&(result<=(1<<13)-1)){
+  if((result<=(1<<13)-1)){
       return result;
     }
     else{
@@ -398,7 +398,7 @@ uint32_t str_to_uint_32(char* x){
         }
       }
     }
-  if((result>=0)&&(result<=(1<<20)-1)){
+  if((result<=(1<<20)-1)){
       return result;
     }
     else{
@@ -451,7 +451,7 @@ uint32_t str_to_uint_21(char* x){
       }
     }
   }
-  if((result>=0)&&(result<=(1<<21)-1)){
+  if((result<=(1<<21)-1)){
       return result;
     }
     else{
